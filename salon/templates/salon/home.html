@@ -1,0 +1,1164 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elegance Salon | Beauty, Elevated</title>
+    <link rel="icon" type="image/svg+xml" href="{% static 'salon/favicon.svg' %}">
+    <meta name="description" content="Discover premium salon services and book your next appointment.">
+
+    <style>
+        :root {
+            --cream: #f8f4ec;
+            --white: #fffdf9;
+            --black: #171613;
+            --gold: #bd9145;
+            --gold-dark: #95641f;
+            --muted: #6f6b64;
+            --border: #e8dfd1;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: var(--cream);
+            color: var(--black);
+            line-height: 1.55;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button, input {
+            font: inherit;
+        }
+
+        .container {
+            width: min(1320px, 92%);
+            margin: auto;
+        }
+
+        /* TOP BAR */
+
+        .topbar {
+            background: var(--black);
+            color: white;
+            min-height: 34px;
+            padding: 7px 4%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            font-size: 11px;
+        }
+
+        .topbar-group {
+            display: flex;
+            gap: 18px;
+            align-items: center;
+        }
+
+        /* HEADER */
+
+        header {
+            background: var(--white);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 20;
+        }
+
+        .navbar {
+            min-height: 76px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 25px;
+        }
+
+        .brand {
+            display: inline-flex;
+            flex-direction: column;
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: 24px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            line-height: 1.05;
+            white-space: nowrap;
+        }
+
+        .brand span {
+            color: var(--gold);
+        }
+
+        .brand small {
+            font-family: Arial, sans-serif;
+            font-size: 8px;
+            letter-spacing: 3px;
+            text-align: center;
+            margin-top: 5px;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: clamp(13px, 2.5vw, 30px);
+            font-size: 12px;
+        }
+
+        .nav-links a:hover {
+            color: var(--gold-dark);
+        }
+    .logout-form {
+    display: inline-flex;
+    margin: 0;
+}
+
+.logout-button {
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    cursor: pointer;
+}
+
+.logout-button:hover {
+    color: var(--gold-dark);
+}
+
+.footer-logout-button {
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    font-size: 10px;
+    cursor: pointer;
+}
+
+.footer-logout-button:hover {
+    color: var(--gold-dark);
+}
+
+        .btn {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 21px;
+            border: 1px solid var(--black);
+            border-radius: 30px;
+            background: var(--black);
+            color: white;
+            font-size: 11px;
+            font-weight: bold;
+            text-align: center;
+            cursor: pointer;
+            transition: .2s ease;
+        }
+
+        .btn:hover {
+            background: var(--gold-dark);
+            border-color: var(--gold-dark);
+        }
+
+        .btn-gold {
+            background: var(--gold);
+            border-color: var(--gold);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border-color: #817b70;
+            color: var(--black);
+        }
+
+        .btn-outline:hover {
+            color: white;
+        }
+
+        /* HERO SECTION */
+
+        .hero {
+            background: linear-gradient(90deg, #faf6ef, #f4ede2);
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: .9fr 1.1fr;
+            align-items: stretch;
+            min-height: 430px;
+        }
+
+        .hero-copy {
+            align-self: center;
+            padding: 50px 30px 50px 0;
+        }
+
+        .eyebrow {
+            font-size: 10px;
+            font-weight: bold;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+
+        h1, h2, h3 {
+            font-family: Georgia, "Times New Roman", serif;
+            font-weight: normal;
+            line-height: 1.12;
+        }
+
+        h1 {
+            font-size: clamp(42px, 5.2vw, 68px);
+            letter-spacing: -1.7px;
+            margin-bottom: 20px;
+        }
+
+        .hero-text {
+            color: #45413c;
+            font-size: 14px;
+            max-width: 430px;
+            margin-bottom: 24px;
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .hero-image {
+            min-height: 430px;
+            overflow: hidden;
+            background: #ded0bd;
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: 100%;
+            min-height: 430px;
+            display: block;
+            object-fit: cover;
+        }
+
+        /* BENEFITS STRIP */
+
+        .trust-strip {
+            background: var(--white);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .trust-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            padding: 20px 0;
+        }
+
+        .trust-item {
+            text-align: center;
+            padding: 0 15px;
+            border-right: 1px solid var(--border);
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: 15px;
+        }
+
+        .trust-item:last-child {
+            border-right: 0;
+        }
+
+        .trust-icon {
+            display: block;
+            color: var(--gold);
+            font-size: 27px;
+            margin-bottom: 3px;
+        }
+
+        .trust-item small {
+            display: block;
+            color: var(--muted);
+            font-family: Arial, sans-serif;
+            font-size: 11px;
+            margin-top: 4px;
+        }
+
+        /* SERVICES */
+
+        .section {
+            padding: 42px 0 20px;
+        }
+
+        .section-heading {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 26px;
+        }
+
+        .section-heading .eyebrow {
+            margin-bottom: 8px;
+        }
+
+        .section-heading h2 {
+            font-size: clamp(32px, 4vw, 44px);
+            margin-bottom: 8px;
+        }
+
+        .section-heading p {
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+        .service-search {
+            display: flex;
+            max-width: 550px;
+            margin: 0 auto 25px;
+            border: 1px solid var(--border);
+            border-radius: 30px;
+            background: var(--white);
+            overflow: hidden;
+        }
+
+        .service-search input {
+            min-width: 0;
+            flex: 1;
+            padding: 12px 18px;
+            border: 0;
+            outline: none;
+            background: transparent;
+            font-size: 12px;
+        }
+
+        .service-search .btn {
+            border-radius: 0;
+            min-width: 105px;
+            border: 0;
+        }
+
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 16px;
+        }
+
+        .service-card {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            overflow: hidden;
+            min-width: 0;
+            transition: transform .2s ease, box-shadow .2s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px #201d1910;
+        }
+
+        /* STATIC SERVICE IMAGE SLIDESHOWS */
+
+        .service-slideshow {
+            height: 155px;
+            position: relative;
+            overflow: hidden;
+            background: #e9dfd0;
+        }
+
+        .service-slide {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .slide-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 32px;
+            height: 32px;
+            border: 0;
+            border-radius: 50%;
+            background: rgba(20,20,20,.75);
+            color: white;
+            cursor: pointer;
+            font-size: 23px;
+            line-height: 1;
+        }
+
+        .slide-arrow:hover {
+            background: var(--gold-dark);
+        }
+
+        .slide-arrow.prev {
+            left: 8px;
+        }
+
+        .slide-arrow.next {
+            right: 8px;
+        }
+
+        .slide-count {
+            position: absolute;
+            right: 8px;
+            bottom: 7px;
+            padding: 3px 7px;
+            border-radius: 12px;
+            color: white;
+            background: rgba(0,0,0,.7);
+            font-size: 10px;
+        }
+
+        .service-card-body {
+            padding: 12px 14px 13px;
+        }
+
+        .service-number {
+            display: none;
+        }
+
+        .service-card h3 {
+            font-size: 17px;
+            margin-bottom: 5px;
+        }
+
+        .service-card p {
+            color: #514d47;
+            font-size: 11px;
+            line-height: 1.45;
+            min-height: 32px;
+            margin-bottom: 10px;
+        }
+
+        .service-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .price {
+            color: var(--gold-dark);
+            font-size: 14px;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+
+        .service-bottom a {
+            color: var(--gold-dark);
+            border: 1px solid var(--gold);
+            border-radius: 20px;
+            padding: 5px 11px;
+            font-size: 10px;
+            white-space: nowrap;
+        }
+
+        .service-bottom a:hover {
+            background: var(--gold);
+            color: white;
+        }
+
+        .empty-services {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 35px;
+            background: var(--white);
+            border: 1px solid var(--border);
+        }
+
+        /* APPOINTMENT BANNER */
+
+        .experience {
+            margin-top: 16px;
+            color: white;
+            background:
+                linear-gradient(90deg, rgba(20,19,16,.96), rgba(20,19,16,.75)),
+                url("https://images.unsplash.com/photo-1600334129128-685c5582fd35?auto=format&fit=crop&w=1800&q=90")
+                center / cover;
+            padding: 34px 0;
+        }
+
+        .experience h2 {
+            font-size: clamp(26px, 3vw, 36px);
+            margin-bottom: 8px;
+        }
+
+        .experience p {
+            color: #e3ded6;
+            font-size: 12px;
+            max-width: 550px;
+            margin-bottom: 15px;
+        }
+
+        .experience .eyebrow {
+            color: #e5c17c;
+            margin-bottom: 7px;
+        }
+
+        /* FOOTER */
+
+        footer {
+            background: var(--white);
+            padding: 20px 0;
+            border-top: 1px solid var(--border);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .footer-content .brand {
+            font-size: 18px;
+        }
+
+        .footer-content .brand small {
+            font-size: 6px;
+        }
+
+        .footer-content p {
+            color: var(--muted);
+            font-size: 10px;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            font-size: 10px;
+        }
+
+        .footer-links a:hover {
+            color: var(--gold-dark);
+        }
+    .footer-logout-button {
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    font-size: 10px;
+    cursor: pointer;
+}
+
+.footer-logout-button:hover {
+    color: var(--gold-dark);
+}
+
+        /* RESPONSIVE DESIGN */
+
+        @media (max-width: 1000px) {
+            .navbar {
+                padding: 14px 0;
+                flex-wrap: wrap;
+            }
+
+            .nav-links {
+                gap: 14px;
+            }
+
+            .navbar > .btn {
+                display: none;
+            }
+
+            .service-grid {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 720px) {
+            .topbar {
+                justify-content: center;
+            }
+
+            .topbar-group:last-child {
+                display: none;
+            }
+
+            .navbar {
+                justify-content: center;
+            }
+
+            .nav-links {
+                justify-content: center;
+            }
+
+            .hero-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-copy {
+                padding: 42px 0 32px;
+            }
+
+            .hero-image,
+            .hero-image img {
+                min-height: 280px;
+                height: 280px;
+            }
+
+            .trust-grid {
+                grid-template-columns: repeat(2, 1fr);
+                row-gap: 18px;
+            }
+
+            .trust-item:nth-child(2) {
+                border-right: 0;
+            }
+
+            .service-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .service-slideshow {
+                height: 170px;
+            }
+        }
+
+        @media (max-width: 440px) {
+            .brand {
+                font-size: 21px;
+            }
+
+            .nav-links {
+                gap: 10px 14px;
+                font-size: 11px;
+            }
+
+            .service-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .service-slideshow {
+                height: 220px;
+            }
+
+            .service-card-body {
+                padding: 14px;
+            }
+
+            .service-card h3 {
+                font-size: 19px;
+            }
+
+            .service-card p {
+                font-size: 12px;
+                min-height: 0;
+            }
+
+            .service-bottom {
+                flex-wrap: nowrap;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- TOP BAR -->
+
+    <div class="topbar">
+        <div class="topbar-group">
+            <span>⌖ Nairobi, Kenya</span>
+        </div>
+
+        <div class="topbar-group">
+            <span>Look Good</span>
+            <span>•</span>
+            <span>Feel Good</span>
+            <span>•</span>
+            <span>Be You</span>
+        </div>
+
+        <div class="topbar-group">
+            <span>◷ Mon - Sat: 8:00 AM - 8:00 PM</span>
+            <span>☎ +254 700 123 456</span>
+        </div>
+    </div>
+
+    <!-- NAVIGATION -->
+
+    <header>
+        <div class="container navbar">
+
+            <a href="{% url 'home' %}" class="brand">
+                SMART<span>SALON.</span>
+                <small>BEAUTY, ELEVATED</small>
+            </a>
+
+            <nav class="nav-links" aria-label="Main navigation">
+                <a href="{% url 'home' %}">Home</a>
+                <a href="#services">Services</a>
+
+                {% if user.is_authenticated %}
+                    <a href="{% url 'my_appointments' %}">
+                        My Appointments
+                    </a>
+                    <span>Hello, {{ user.username }}</span>
+                    <form method="POST"
+      action="{% url 'logout' %}"
+      class="logout-form">
+    {% csrf_token %}
+    <button type="submit" class="logout-button">Logout</button>
+</form>
+                {% else %}
+                    <a href="{% url 'login' %}">Login</a>
+                    <a href="{% url 'register' %}">Register</a>
+                {% endif %}
+            </nav>
+
+            {% if user.is_authenticated %}
+                <a href="{% url 'book_appointment' %}" class="btn btn-gold">
+                    Book an Appointment
+                </a>
+            {% else %}
+                <a href="{% url 'login' %}" class="btn btn-gold">
+                    Book an Appointment
+                </a>
+            {% endif %}
+
+        </div>
+    </header>
+
+    <main>
+
+        <!-- HERO -->
+
+        <section class="hero">
+            <div class="container hero-grid">
+
+                <div class="hero-copy">
+                    <p class="eyebrow">Premium Salon Services</p>
+
+                    <h1>Beauty Care<br>Tailored for You</h1>
+
+                    <p class="hero-text">
+                        From hair styling to rejuvenating treatments,
+                        we bring out your natural beauty with expert care,
+                        premium products and a relaxing experience.
+                    </p>
+
+                    <div class="hero-actions">
+                        {% if user.is_authenticated %}
+                            <a href="{% url 'book_appointment' %}"
+                               class="btn btn-gold">
+                                Book an Appointment →
+                            </a>
+                        {% else %}
+                            <a href="{% url 'register' %}"
+                               class="btn btn-gold">
+                                Book an Appointment →
+                            </a>
+                        {% endif %}
+
+                        <a href="#services" class="btn btn-outline">
+                            Explore Our Services
+                        </a>
+                    </div>
+                </div>
+
+                <div class="hero-image">
+                    <img
+                        src="{% static 'salon/images/38.jpg' %}"
+                        alt="Elegant modern salon interior"
+                        fetchpriority="high">
+                </div>
+
+            </div>
+        </section>
+
+        <!-- BENEFITS -->
+
+        <section class="trust-strip">
+            <div class="container trust-grid">
+
+                <div class="trust-item">
+                    <span class="trust-icon">♧</span>
+                    Professional Stylists
+                    <small>Skilled &amp; experienced team</small>
+                </div>
+
+                <div class="trust-item">
+                    <span class="trust-icon">✧</span>
+                    Premium Products
+                    <small>Safe &amp; high-quality</small>
+                </div>
+
+                <div class="trust-item">
+                    <span class="trust-icon">▦</span>
+                    Easy Online Booking
+                    <small>Book in minutes</small>
+                </div>
+
+                <div class="trust-item">
+                    <span class="trust-icon">♡</span>
+                    Relaxing Environment
+                    <small>Your comfort matters</small>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- SERVICES -->
+
+        <section class="section" id="services">
+            <div class="container">
+
+                <div class="section-heading">
+                    <p class="eyebrow">Our Services</p>
+                    <h2>Look Good, Feel Great</h2>
+                    <p>
+                        Choose from our wide range of beauty and grooming
+                        services. All services are performed by professionals
+                        using premium products.
+                    </p>
+                </div>
+
+                <form method="GET"
+                      action="{% url 'home' %}"
+                      class="service-search">
+
+                    <input
+                        type="search"
+                        name="q"
+                        value="{{ search_query }}"
+                        placeholder="Search services..."
+                        aria-label="Search services">
+
+                    <button type="submit" class="btn btn-gold">
+                        Search
+                    </button>
+                </form>
+
+                <div class="service-grid">
+
+                    {% for service in services %}
+
+                        <article class="service-card">
+
+                            <div class="service-slideshow"
+                                 data-service="{{ service.name|lower }}">
+
+                                <img
+                                    class="service-slide"
+                                    src="https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=900&q=90"
+                                    alt="{{ service.name }} sample"
+                                    loading="lazy">
+
+                                <button
+                                    type="button"
+                                    class="slide-arrow prev"
+                                    aria-label="Previous {{ service.name }} image">
+                                    ‹
+                                </button>
+
+                                <button
+                                    type="button"
+                                    class="slide-arrow next"
+                                    aria-label="Next {{ service.name }} image">
+                                    ›
+                                </button>
+
+                                <span class="slide-count">1 / 3</span>
+                            </div>
+
+                            <div class="service-card-body">
+
+                                <h3>{{ service.name }}</h3>
+
+                                <p>
+                                    Professional care tailored to your
+                                    style, preferences and beauty routine.
+                                </p>
+
+                                <div class="service-bottom">
+                                    <span class="price">
+                                        KSh {{ service.price }}
+                                    </span>
+
+                                    {% if user.is_authenticated %}
+                                        <a href="{% url 'book_appointment' %}">
+                                            Book Now →
+                                        </a>
+                                    {% else %}
+                                        <a href="{% url 'login' %}">
+                                            Book Now →
+                                        </a>
+                                    {% endif %}
+                                </div>
+
+                            </div>
+                        </article>
+
+                    {% empty %}
+
+                        <div class="empty-services">
+                            <h3>No services found</h3>
+                            <p>
+                                Try another search, or check back later
+                                for available salon services.
+                            </p>
+                        </div>
+
+                    {% endfor %}
+
+                </div>
+            </div>
+        </section>
+
+        <!-- APPOINTMENT BANNER -->
+
+        <section class="experience">
+            <div class="container">
+
+                <p class="eyebrow">Your Beauty Journey</p>
+
+                <h2>Ready to Look and Feel Amazing?</h2>
+
+                <p>
+                    Book your appointment today and let our experts
+                    take care of you.
+                </p>
+
+                {% if user.is_authenticated %}
+                    <a href="{% url 'book_appointment' %}"
+                       class="btn btn-gold">
+                        Book an Appointment →
+                    </a>
+                {% else %}
+                    <a href="{% url 'register' %}"
+                       class="btn btn-gold">
+                        Book an Appointment →
+                    </a>
+                {% endif %}
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+
+    <footer>
+        <div class="container footer-content">
+
+            <a href="{% url 'home' %}" class="brand">
+                SMART<span>SALON.</span>
+                <small>BEAUTY, ELEVATED</small>
+            </a>
+
+            <p>
+                © {% now "Y" %} Smart Salon. Beauty, elevated.
+            </p>
+
+            <nav class="footer-links" aria-label="Footer navigation">
+                <a href="#services">Services</a>
+
+                {% if user.is_authenticated %}
+                    <a href="{% url 'my_appointments' %}">
+                        My Appointments
+                    </a>
+                    <form method="POST" action="{% url 'logout' %}" class="logout-form">
+    {% csrf_token %}
+    <button type="submit" class="footer-logout-button">Logout</button>
+</form>
+                {% else %}
+                    <a href="{% url 'login' %}">Login</a>
+                    <a href="{% url 'register' %}">Register</a>
+                {% endif %}
+            </nav>
+
+        </div>
+    </footer>
+
+    <!-- STATIC IMAGE SLIDESHOW JAVASCRIPT -->
+
+    
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    // Three online images for each salon service.
+    const beautyImages = {
+        pedicure: [
+            "{% static 'salon/images/19.jpg' %}",
+            "{% static 'salon/images/20.jpg' %}",
+            "{% static 'salon/images/21.jpg' %}"
+        ],
+
+        manicure: [
+             "{% static 'salon/images/7.jpg' %}",
+            "{% static 'salon/images/8.jpg' %}",
+            "{% static 'salon/images/9.jpg' %}"
+        ],
+
+        facial: [
+            "{% static 'salon/images/28.jpg' %}",
+            "{% static 'salon/images/29.jpg' %}",
+            "{% static 'salon/images/30.jpg' %}"
+        ],
+
+        shampooBlowDry: [
+            "{% static 'salon/images/22.jpg' %}",
+            "{% static 'salon/images/23.jpg' %}",
+            "{% static 'salon/images/24.jpg' %}"
+        ],
+
+        nailArt: [
+            "{% static 'salon/images/31.jpg' %}",
+            "{% static 'salon/images/32.jpg' %}",
+            "{% static 'salon/images/33.jpg' %}"
+        ],
+
+        gelNails: [
+            "{% static 'salon/images/34.jpg' %}",
+            "{% static 'salon/images/35.jpg' %}",
+            "{% static 'salon/images/36.jpg' %}"
+        ],
+
+        dreadlocks: [
+            "{% static 'salon/images/1.jpg' %}",
+            "{% static 'salon/images/2.jpg' %}",
+            "{% static 'salon/images/3.jpg' %}"
+        ],
+
+        cornrows: [
+            "{% static 'salon/images/4.jpg' %}",
+            "{% static 'salon/images/5.jpg' %}",
+            "{% static 'salon/images/6.jpg' %}"
+        ],
+
+        haircut: [
+           "{% static 'salon/images/16.jpg' %}",
+            "{% static 'salon/images/17.jpg' %}",
+            "{% static 'salon/images/18.jpg' %}"
+        ],
+
+        braiding: [
+            "{% static 'salon/images/13.jpg' %}",
+            "{% static 'salon/images/14.jpg' %}",
+            "{% static 'salon/images/15.jpg' %}"
+        ],
+
+        hairColoring: [
+            "{% static 'salon/images/10.jpg' %}",
+            "{% static 'salon/images/11.jpg' %}",
+            "{% static 'salon/images/12.jpg' %}"
+        ],
+
+        hairWashing: [
+             "{% static 'salon/images/25.jpg' %}",
+            "{% static 'salon/images/26.jpg' %}",
+            "{% static 'salon/images/27.jpg' %}"
+        ]
+    };
+
+    // Match the service name stored in your Django database.
+    function getImagesForService(serviceName) {
+        const name = serviceName.toLowerCase();
+
+        if (name.includes("pedicure")) return beautyImages.pedicure;
+        if (name.includes("manicure")) return beautyImages.manicure;
+        if (name.includes("facial")) return beautyImages.facial;
+
+        if (name.includes("nail art")) return beautyImages.nailArt;
+        if (name.includes("gel nail")) return beautyImages.gelNails;
+
+        if (name.includes("dreadlock") || name.includes("locs")) {
+            return beautyImages.dreadlocks;
+        }
+
+        if (name.includes("cornrow")) return beautyImages.cornrows;
+        if (name.includes("braid")) return beautyImages.braiding;
+        if (name.includes("haircut") || name.includes("hair cut")) {
+            return beautyImages.haircut;
+        }
+
+        if (
+            name.includes("shampoo") ||
+            name.includes("blow dry") ||
+            name.includes("blow-dry")
+        ) {
+            return beautyImages.shampooBlowDry;
+        }
+
+        if (
+            name.includes("color") ||
+            name.includes("colour") ||
+            name.includes("dye")
+        ) {
+            return beautyImages.hairColoring;
+        }
+
+        if (
+            name.includes("hairwash") ||
+            name.includes("hair wash") ||
+            name.includes("washing")
+        ) {
+            return beautyImages.hairWashing;
+        }
+
+        // Default images for any other service.
+        return beautyImages.haircut;
+    }
+
+    // Set up each service card's slideshow.
+    document.querySelectorAll(".service-slideshow").forEach(function (slideshow) {
+        const serviceName = slideshow.dataset.service || "";
+        const images = getImagesForService(serviceName);
+
+        const imageElement = slideshow.querySelector(".service-slide");
+        const previousButton = slideshow.querySelector(".slide-arrow.prev");
+        const nextButton = slideshow.querySelector(".slide-arrow.next");
+        const counter = slideshow.querySelector(".slide-count");
+
+        if (!imageElement || !previousButton || !nextButton) return;
+
+        let currentIndex = 0;
+
+        function showImage(index) {
+            currentIndex = (index + images.length) % images.length;
+
+            imageElement.src = images[currentIndex];
+            imageElement.alt = serviceName + " salon service image " +
+                (currentIndex + 1);
+
+            if (counter) {
+                counter.textContent = (currentIndex + 1) + " / " + images.length;
+            }
+        }
+
+        previousButton.addEventListener("click", function () {
+            showImage(currentIndex - 1);
+        });
+
+        nextButton.addEventListener("click", function () {
+            showImage(currentIndex + 1);
+        });
+
+        showImage(0);
+    });
+});
+</script>
+
+
+</body>
+</html>
