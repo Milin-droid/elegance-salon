@@ -1,17 +1,30 @@
+databases:
+  - name: elegance-salon-db
+    databaseName: elegance_salon
+    user: elegance_salon
+    plan: free
 
 services:
   - type: web
     name: elegance-salon
     runtime: python
     plan: free
-    buildCommand: "./build.sh"
+    buildCommand: "bash ./build.sh"
     startCommand: "python -m gunicorn config.wsgi:application"
     envVars:
       - key: DATABASE_URL
-        sync: false
+        fromDatabase:
+          name: elegance-salon-db
+          property: connectionString
       - key: DJANGO_SECRET_KEY
         generateValue: true
       - key: DJANGO_DEBUG
         value: "False"
       - key: DJANGO_ALLOWED_HOSTS
         value: "elegance-salon.onrender.com"
+      - key: DJANGO_SUPERUSER_USERNAME
+        sync: false
+      - key: DJANGO_SUPERUSER_EMAIL
+        sync: false
+      - key: DJANGO_SUPERUSER_PASSWORD
+        sync: false
